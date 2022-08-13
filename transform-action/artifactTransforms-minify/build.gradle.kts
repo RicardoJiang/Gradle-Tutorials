@@ -41,8 +41,6 @@ abstract class Minify : TransformAction<Minify.Parameters> {   // <1>
 
     private fun minify(artifact: File, keepClasses: Set<String>, jarFile: File) {
         println("Minifying ${artifact.name}")
-        // Implementation ...
-// end::artifact-transform-minify[]
         JarOutputStream(BufferedOutputStream(FileOutputStream(jarFile))).use { jarOutputStream ->
             ZipFile(artifact).use { zip ->
                 for (entry in zip.entries()) {
@@ -67,7 +65,6 @@ abstract class Minify : TransformAction<Minify.Parameters> {   // <1>
         putNextEntry(ZipEntry(entry.name))
         zip.getInputStream(entry).use { it.copyTo(this) }
         closeEntry()
-// tag::artifact-transform-minify[]
     }
 }
 
